@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    margin-top: 20px;
+    color: #555;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.loan-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.loan-list li {
+    background: #f9f9f9;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.loan-item h3 {
+    margin: 0;
+    color: #333;
+}
+
+.loan-item p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.loan-actions {
+    margin-top: 10px;
+}
+
+.loan-actions button {
+    margin-top: 5px;
+    width: 48%;
+    display: inline-block;
+}
