@@ -38,26 +38,26 @@ function calculateDailyInterest(balance, rate) {
     return (balance * (rate / 100)) / 365;
 }
 
-// Update loan balances daily
-// Update loan balances daily with interest accumulation
+// Corrected: Update loan balances daily and apply interest
 function updateLoanBalances() {
-    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
     loans.forEach((loan) => {
         const lastUpdateDate = new Date(loan.lastUpdate);
         const currentDate = new Date();
-        
-        // Calculate number of days since last update
+
+        // Calculate number of days passed since last update
         const daysDiff = Math.floor((currentDate - lastUpdateDate) / (1000 * 60 * 60 * 24));
 
-        // Only apply interest if days have passed
+        // Apply interest only if at least one day has passed
         if (daysDiff > 0) {
             const dailyInterest = calculateDailyInterest(loan.balance, loan.interestRate);
 
-            // Apply interest for each day that has passed
+            // Apply accumulated interest for each day passed
             const interestAmount = dailyInterest * daysDiff;
             loan.balance += interestAmount;
 
-            // Log the interest applied
+            // Log interest addition
             loan.log.push(`Interest of $${interestAmount.toFixed(2)} added over ${daysDiff} days.`);
 
             // Update the last update date to today
@@ -65,9 +65,10 @@ function updateLoanBalances() {
         }
     });
 
-    // Save updated data to localStorage
+    // Save updated loan data to localStorage
     saveLoans();
 }
+
 
 
 // Update and render all loans
