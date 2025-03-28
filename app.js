@@ -71,18 +71,22 @@ function updateLoanBalances() {
 
 
 // Update and render all loans
+// Update and render all loans with daily interest display
 function renderLoans() {
-    updateLoanBalances();
+    updateLoanBalances(); // Ensure balance is updated first
     const loanList = document.getElementById("loanList");
     loanList.innerHTML = "";
 
     loans.forEach((loan) => {
+        const dailyInterest = calculateDailyInterest(loan.balance, loan.interestRate); // Get daily interest
+
         const li = document.createElement("li");
         li.className = "loan-item";
         li.innerHTML = `
             <h3>${loan.name}</h3>
             <p><strong>Balance:</strong> $${loan.balance.toFixed(2)}</p>
             <p><strong>Interest Rate:</strong> ${loan.interestRate}%</p>
+            <p><strong>Daily Interest:</strong> $${dailyInterest.toFixed(2)}</p>
             <p><strong>Last Updated:</strong> ${loan.lastUpdate}</p>
             <div class="loan-actions">
                 <button onclick="makePayment(${loan.id})">Make Payment</button>
@@ -121,9 +125,7 @@ function deleteLoan(id) {
 function autoUpdateDaily() {
     setInterval(updateLoanBalances, 24 * 60 * 60 * 1000);
 }
-function calculateDailyInterest(balance, rate) {
-    return (balance * (rate / 100)) / 365;
-}
+
 // Initial render and start 24-hour auto update
 renderLoans();
 updateLoanBalances();
