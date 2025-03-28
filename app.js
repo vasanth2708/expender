@@ -123,9 +123,17 @@ function deleteLoan(id) {
 }
 
 // Auto-update balances every 24 hours
+// Auto-update balances and apply interest every 24 hours
 function autoUpdateDaily() {
-    setInterval(updateLoanBalances, 24 * 60 * 60 * 1000);
+    setInterval(() => {
+        updateLoanBalances(); // Apply interest and update
+        renderLoans(); // Refresh the UI after updating
+    }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
 }
+
+// Initial render and auto-update trigger
+renderLoans();
+autoUpdateDaily();
 
 // Initial render and start 24-hour auto update
 renderLoans();
